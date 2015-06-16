@@ -1,0 +1,16 @@
+home_frontend:
+    resource: "@HomeFrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+home_backend:
+    resource: "@HomeBackendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

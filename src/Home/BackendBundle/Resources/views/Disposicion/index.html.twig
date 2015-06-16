@@ -1,0 +1,134 @@
+{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}
+
+{% block title %}
+{{ parent() }} - {{ 'views.index.list'|trans({'%entity%': 'Disposicion'}, 'MWSimpleCrudGeneratorBundle') }}
+{% endblock %}
+
+{% block page %}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+       <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                {{ form_start(filterForm) }}
+                    <div class="col-md-4">
+                        <div class="col-md-6">
+                            {{ form_widget(filterForm.gestion) }} 
+                        </div>
+                         <div class="col-md-6">
+                            {{ form_widget(filterForm.numero) }}
+                        </div>
+                    </div>
+                    <div class="col-md-2">{{form_widget(filterForm.fecha)}}</div>
+                    <div class="col-md-2">{{form_widget(filterForm.oficina)}}</div>
+                    <div class="col-md-2">{{form_widget(filterForm.tema)}}</div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-md-5"> {{ form_widget(filterForm.filter) }}</div>
+                            <div class="col-md-2"> {{ form_widget(filterForm.reset) }}</div>
+
+                        </div>
+                       {{ form_rest(filterForm) }}
+
+                    </div>
+
+            </div> 
+        </div>
+       </div>  
+
+    </div>
+</div>
+    
+    <div class="row">
+    <div class="panel panel-default">
+   {# <div class="panel-heading"><h3>{{ 'views.index.list'|trans({'%entity%': 'Disposicion'}, 'MWSimpleCrudGeneratorBundle') }}</h3></div> #}    
+   
+        <table class="table table-striped table-hover table-condensed table-responsive">
+       
+
+            <thead>
+                <tr>
+                    
+                    <th{% if entities.isSorted('a.gestion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Gestion', 'a.gestion') }}</th>
+                    <th{% if entities.isSorted('a.Numero') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Numero', 'a.numero') }}</th>
+                    <th class="sorted"> Oficina </th>
+                    <th {% if entities.isSorted('a.Fecha') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Fecha', 'a.fecha') }}</th>
+                    <th class="sorted"> Tema </th>
+                    <th{% if entities.isSorted('a.Descripcion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Descripcion', 'a.descripcion') }}</th>
+                    <th> Archivos </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    
+                    <td>{{ entity.gestion }}</td>
+                    <td>{{ entity.numero }}</td>
+                    <td>{{ entity.oficina }}</td>
+                    <td>{% if entity.fecha %}{{ entity.fecha|date('d-m-Y') }}{% endif %}</td>
+                    <td>{{ entity.tema }}</td>
+                    <td>{{ entity.descripcion }}</td>
+                    <td>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a class="glyphicon glyphicon-search tooltips"  href="{{ path('admin_disposicion_show', { 'id': entity.id }) }}" title="" rel="tooltip" data-original-title="{{ 'views.actions.show'|trans({}, 'MWSimpleCrudGeneratorBundle') }}"></a>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="glyphicon glyphicon-edit tooltips"  href="{{ path('admin_disposicion_edit', { 'id': entity.id }) }}" title="" rel="tooltip" data-original-title="{{ 'views.actions.edit'|trans({}, 'MWSimpleCrudGeneratorBundle') }}"></a>
+                        </div>
+                        <div class="col-md-4">
+                            {%  if entity.file is not null  %}
+                                <a target="_blank" title="ver pdf" href="{{ asset(entity.file) }}"><img src="{{ asset('bundles/homefrontend/images/pdf_ico.png') }}" class="img-responsive centrado" /></a>
+                            {% endif %}
+                        </div> 
+                    </div>
+                       
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    <div class="row">
+        
+   
+    <div class="col-lg-4 navigation">
+        {{ knp_pagination_render(entities) }}
+    </div>
+     <div class="col-lg-8">
+        <a class="btn btn-primary likepaginator" href="{{ path('admin_disposicion_new') }}">
+            {{ 'views.index.createnew'|trans({}, 'MWSimpleCrudGeneratorBundle') }} Disposicion
+        </a>
+        
+    </div>
+      </div>   
+{% endblock %}
+
+
+{% block javascript %}
+<script type="text/javascript">
+$('.tooltips').tooltip();
+</script>
+
+<script type="text/javascript">
+    $('#home_backendbundle_disposicionfiltertype_oficina').select2({
+       minimumInputLength: 3,
+        placeholder: "seleccione una oficina",
+});
+</script>
+<script type="text/javascript">
+    $('#home_backendbundle_disposicionfiltertype_tema').select2({
+        minimumInputLength: 3,
+        placeholder: "seleccione una tema",
+});
+</script>
+<script type="text/javascript">
+    $('#home_backendbundle_disposicionfiltertype_fecha_left_date').bootstrapMaterialDatePicker();
+</script>
+<script type="text/javascript">
+    $('#home_backendbundle_disposicionfiltertype_fecha_right_date').bootstrapMaterialDatePicker();
+</script>
+
+
+{% endblock %}
