@@ -28,15 +28,17 @@ class DisposicionType extends AbstractType
                                     'placeholder' => 'Seleccione Tema',
                                     'attr' => array('class' => 'form-control')))
             ->add('oficina')
-            ->add('numero')
+            ->add('numero','integer',array('attr' => array(
+                                    'novalidate' => 'novalidate'
+                )))
             ->add('fecha','date',array('widget' => 'single_text',
                         'html5'   => false))
             ->add('descripcion','textarea')
             ->add('estado','checkbox',array(
                                     'attr' => array('type' => 'checkbox',
                                                     'required'=> 'false')))
-            ->add('file')/*,new FileType(), array(
-                                    'attr' => array('class' => 'well')))*/
+            ->add('file',new FileType(), array(
+                                    'attr' => array('class' => 'well')))
         ;
     }
     

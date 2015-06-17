@@ -53,6 +53,7 @@
                     <th{% if entities.isSorted('a.gestion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Gestion', 'a.gestion') }}</th>
                     <th{% if entities.isSorted('a.Numero') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Numero', 'a.numero') }}</th>
                     <th class="sorted"> Oficina </th>
+                    <td> Caracter </td>
                     <th {% if entities.isSorted('a.Fecha') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Fecha', 'a.fecha') }}</th>
                     <th class="sorted"> Tema </th>
                     <th{% if entities.isSorted('a.Descripcion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Descripcion', 'a.descripcion') }}</th>
@@ -66,6 +67,13 @@
                     <td>{{ entity.gestion }}</td>
                     <td>{{ entity.numero }}</td>
                     <td>{{ entity.oficina }}</td>
+                    <td> 
+                        {% if entity.estado == null%}
+                            <p style="color: green"> Público </p>
+                        {% else %}
+                            <p style="color: red"> Privado </p>
+                        {% endif %}
+                    </td>
                     <td>{% if entity.fecha %}{{ entity.fecha|date('d-m-Y') }}{% endif %}</td>
                     <td>{{ entity.tema }}</td>
                     <td>{{ entity.descripcion }}</td>
