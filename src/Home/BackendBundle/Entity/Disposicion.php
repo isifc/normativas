@@ -23,12 +23,14 @@ class Disposicion
 
 
     /**
-    * @ORM\ManyToOne(targetEntity="Oficina", inversedBy="disposiciones" ,fetch="EAGER")
+    * @ORM\ManyToOne(targetEntity="Oficina", inversedBy="disposiciones" ,fetch="EAGER")ç
+    * Assert\NotNull(message="no puede ser nulo")
     */
     private $oficina; 
 
     /**
     * @ORM\ManyToOne(targetEntity="Tema", fetch="EAGER")
+    * @Assert\NotNull(message="no puede ser nulo")
     */
     private $tema;
 
@@ -39,8 +41,8 @@ class Disposicion
 
     
     /**
-    * @ORM\OneToOne(targetEntity="File", mappedBy="disposicion",cascade={"persist", "remove"})
-    * @Assert\Valid
+    * @ORM\OneToOne(targetEntity="File", mappedBy="disposicion", cascade={"persist", "remove"})
+    * @Assert\NotNull(message= "No puede estar vacio")
     */
     private $file; 
 
@@ -48,7 +50,8 @@ class Disposicion
     /**
      * @var integer
      *
-     * @ORM\Column(name="numero", type="integer")
+     * @ORM\Column(name="numero", type="integer",unique=true)
+     * @Assert\NotNull(message="no puede ser nulo")
      * @Assert\Type(
      *     type="integer")
      */
@@ -65,8 +68,7 @@ class Disposicion
     /**
      * @var \Boolean
      *
-     * @ORM\Column(name="estado", type="boolean", nullable=true)
-     * @Assert\NotNull( message= "metele algo aca")
+     * @ORM\Column(name="estado", type="boolean")
      */
     private $estado;
 
@@ -74,7 +76,7 @@ class Disposicion
      * @var string
      *
      * @ORM\Column(name="descripcion", type="text")
-     * @Assert\NotNull()
+     * @Assert\NotNull(message= "Tenes que registrar una descripción")
      */
     private $descripcion;
 
