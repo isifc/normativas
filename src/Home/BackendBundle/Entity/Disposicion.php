@@ -36,13 +36,14 @@ class Disposicion
 
     /**
     * @ORM\ManyToOne(targetEntity="Gestion", inversedBy="disposiciones" ,fetch="EAGER")
+    * @Assert\NotNull( message= "No puede estar vacio")
     */
     private $gestion;
 
     
     /**
     * @ORM\OneToOne(targetEntity="File", mappedBy="disposicion", cascade={"persist", "remove"})
-    * @Assert\NotNull(message= "No puede estar vacio")
+    * @Assert\NotNull( message= "No puede estar vacio")
     */
     private $file; 
 
@@ -51,7 +52,7 @@ class Disposicion
      * @var integer
      *
      * @ORM\Column(name="numero", type="integer",unique=true)
-     * @Assert\NotNull(message="no puede ser nulo")
+     * @Assert\NotNull( message="no puede ser nulo")
      * @Assert\Type(
      *     type="integer")
      */

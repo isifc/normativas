@@ -14,7 +14,8 @@
         </div>
             
         <div class="panel-body">
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {# {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }} #}
+    {{ form_start(form) }}
             <div class="row">
                  <div class="col-md-3">
                      {{ form_label(form.gestion,'Gestion') }}
@@ -78,7 +79,7 @@
                  <div class="col-md-4">
                      {{ form_widget(form.descripcion) }}
                  </div class="col-md-5">  
-                     {{ form_errors(form.descripcion) }}  
+                    {{ form_errors(form.descripcion) }}
                 </div>
             </div>
              <div class="row">
@@ -100,7 +101,7 @@
                      {{ form_widget(form.file.name) }}                  
                  </div>
                  <div class="col-md-5">
-                     {{ form_errors(form.file.name) }}
+                    {{ form_errors(form.file.name) }}
                  </div>
             </div>
             <div class="row">
@@ -111,7 +112,7 @@
                      {{ form_widget(form.file.file) }}                  
                  </div>
                  <div class="col-md-5">
-                     {{ form_errors(form.file.file) }}
+                    {{ form_errors(form.file.file) }}
                  </div>
             </div>
             {{ form_rest(form) }}

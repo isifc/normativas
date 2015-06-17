@@ -84,20 +84,24 @@
             </div>
              <div class="row">
                  <div class="col-md-3">
-                     {{form_label(edit_form.file.name,'Nombre Archivo')}}
-                 </div>
-                 <div class="col-md-3">
-                     {{form_widget(edit_form.file.name)}}
-                 </div>
-            </div>
-           
-            <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.file.file,'Archivo')}}
+                     {{ form_label(edit_form.file.name,'nombre') }}
                  </div>
                  <div class="col-md-9">
-                     
-                     {{form_widget(edit_form.file.file)}}
+                     {{ form_widget(edit_form.file.name) }}                  
+                 </div>
+                 <div class="col-md-5">
+                    {{ form_errors(edit_form.file.name) }}
+                 </div>
+            </div>
+            <div class="row">
+                 <div class="col-md-3">
+                     {{ form_label(edit_form.file.file,'archivo') }}
+                 </div>
+                 <div class="col-md-9">
+                     {{ form_widget(edit_form.file.file) }}                  
+                 </div>
+                 <div class="col-md-5">
+                    {{ form_errors(edit_form.file.file) }}
                  </div>
             </div>
             {{ form_rest(edit_form) }}
