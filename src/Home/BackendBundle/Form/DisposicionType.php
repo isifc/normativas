@@ -28,9 +28,8 @@ class DisposicionType extends AbstractType
                                     'placeholder' => 'Seleccione Tema',
                                     'attr' => array('class' => 'form-control')))
             ->add('oficina')
-            ->add('numero','integer',array('attr' => array(
-                                    'novalidate' => 'novalidate'
-                )))
+            ->add('numero')
+                
             ->add('fecha','date',array('widget' => 'single_text',
                         'html5'   => false))
             ->add('descripcion','textarea')
