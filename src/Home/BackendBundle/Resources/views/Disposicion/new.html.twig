@@ -6,7 +6,7 @@
 
 {% block page %}
     {% form_theme form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}
-<div ng-app="app">       
+<div>       
         <div class="panel panel-default center-block">
             <div class="panel-heading">
                 <h3 class="panel-title center-block">
@@ -69,10 +69,11 @@
                          {{ form_label(form.numero,'Número') }}
                      </div>
                      <div class="col-md-4">
-                         {{ form_widget(form.numero,{ 'attr': {'data-ng-model': 'foo'} }) }}
+                         {# {{ form_widget(form.numero,{ 'attr': {'data-ng-model': 'foo'} }) }} #}
+                         {{ form_widget(form.numero) }}
                      </div>
-                      <p>[[ foo ]]</p>
-                    {# <span data-ng-show="home_backendbundle_disposicion.foo.$error.number">ingresar solo numeros</span> #}
+                    {# <p>[[ foo ]]</p> 
+                    <span data-ng-show="home_backendbundle_disposicion.home_backendbundle_disposicion[numero].$error.number">ingresar solo numeros</span> #}
                      <div class="col-md-5">
                          {{ form_errors(form.numero) }}
                      </div>
