@@ -1,0 +1,18 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.gestion) }}
+    {{ form_row(form.tema) }}
+    {{ form_row(form.oficina) }}
+    {{ form_row(form.fecha) }}
+    {{ form_row(form.numero) }}
+    {{ form_row(form.descripcion) }}
+    {{ form_row(form.estado) }}
+    {{ form_row(form.estado) }}
+    <div class="row">
+         <div class="col-md-3">
+             {{form_label(form.file,'PDF')}}
+         </div>     
+    </div>
+    {{ form_row(form.file.name) }}
+    {{ form_row(form.file.file) }}
+    {{ form_rest(form) }}
+{{ form_end(form) }}

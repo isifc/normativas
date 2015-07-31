@@ -15,118 +15,8 @@
             </div>
                 
             <div class="panel-body">
-        {# {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }} #}
-
-        {{ form_start(form) }}
-                <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.gestion,'Gestion') }}
-                     </div>
-                     <div class="col-md-4">
-                         {{ form_widget(form.gestion) }}
-
-                     </div>
-                     <div class="col-md-5">
-                          {{ form_errors(form.gestion) }}
-                     </div>
-                </div>
-                <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.tema,'Tematica') }}
-                     </div>
-                     <div class="col-md-4">
-                         {{ form_widget(form.tema) }}
-                     </div>
-                    <div class="col-md-5">
-                         {{ form_errors(form.tema) }} 
-                    </div>
-                </div>
-                <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.oficina,'Oficina') }}
-                     </div>
-                     <div class="col-md-4">
-                         {{ form_widget(form.oficina) }}
-                     </div>
-                    
-                     <div class="col-md-5">
-                         {{ form_errors(form.oficina) }}
-                     </div>
-                </div>
-                <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.fecha,'Fecha') }}
-                     </div>
-                     <div class="col-md-4">
-                         {{ form_widget(form.fecha) }}
-                     </div>
-                     <div class="col-md-5">
-                         {{ form_errors(form.fecha) }}
-                     </div>
-                </div>
-                 <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.numero,'Número') }}
-                     </div>
-                     <div class="col-md-4">
-                         {# {{ form_widget(form.numero,{ 'attr': {'data-ng-model': 'foo'} }) }} #}
-                         {{ form_widget(form.numero) }}
-                     </div>
-                    {# <p>[[ foo ]]</p> 
-                    <span data-ng-show="home_backendbundle_disposicion.home_backendbundle_disposicion[numero].$error.number">ingresar solo numeros</span> #}
-                     <div class="col-md-5">
-                         {{ form_errors(form.numero) }}
-                     </div>
-                </div>
-                <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.descripcion,'Descripcion') }}
-                     </div>
-                     <div class="col-md-4">
-                         {{ form_widget(form.descripcion) }}
-                     </div class="col-md-5">  
-                        {{ form_errors(form.descripcion) }}
-                    </div>
-                </div>
-                 <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.estado,'¿Desea hacer pública esta disposición?') }}
-                     </div>
-                     <div class="col-md-9">
-                         {{ form_widget(form.estado) }}                  
-                     </div>
-                     <div class="col-md-5">
-                         {{ form_errors(form.estado) }}
-                     </div>
-                </div>
-                <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.file.name,'nombre') }}
-                     </div>
-                     <div class="col-md-9">
-                         {{ form_widget(form.file.name) }}                  
-                     </div>
-                     <div class="col-md-5">
-                        {{ form_errors(form.file.name) }}
-                     </div>
-                </div>
-                <div class="row">
-                     <div class="col-md-3">
-                         {{ form_label(form.file.file,'archivo') }}
-                     </div>
-                     <div class="col-md-9">
-                         {{ form_widget(form.file.file) }}                  
-                     </div>
-                     <div class="col-md-5">
-                        {{ form_errors(form.file.file) }}
-                     </div>
-                </div>
-                {{ form_rest(form) }}
+            {% include 'HomeBackendBundle:Disposicion:form.html.twig' with { 'form' : form } %}
             </div>
-
-
-            </div>
-        </div>
 
             <div class="col-lg-9">
         <div class="float-left col-lg-3">
@@ -139,19 +29,17 @@
 {% endblock %}
     
 {% block javascript %}
-    {{ parent() }}
-    <script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
-
-    <script type="text/javascript">
-    $('#home_backendbundle_disposicion_fecha').bootstrapMaterialDatePicker(
-        { lang: "es",
-        weekStart : 0, 
-        time: false });
-</script>
+{{ parent() }}
+<script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
 <script type="text/javascript">
+    $('#home_backendbundle_disposicion_fecha').bootstrapMaterialDatePicker({
+        lang: "es",
+        weekStart : 0, 
+        time: false
+    });
     $('#home_backendbundle_disposicion_oficina').select2({
         minimumInputLength: 3,
         placeholder: "seleccione una oficina",
-});
-    </script>
+    });
+</script>
 {% endblock %}

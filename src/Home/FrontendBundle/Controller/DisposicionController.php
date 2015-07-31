@@ -30,7 +30,7 @@ class DisposicionController extends Controller
     public function indexAction()
     {
         list($filterForm, $queryBuilder) = $this->filter();
-
+        //en la vista solo van los elementos que tienen estado 1, osea los elementos publicos
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $queryBuilder,
@@ -139,5 +139,31 @@ class DisposicionController extends Controller
 
         return $form;
     }
+
+
+    /**
+     * Finds and displays a Disposicion entity.
+     *
+     * @Route("/{id}", name="disposicion_show")
+     * @Method("GET")
+     * @Template()
+     */
+    public function showAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('HomeBackendBundle:Disposicion')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('No se encuentra la disposición.');
+        }
+
+        
+
+        return array(
+            'entity'      => $entity,
+        );
+    }
+
 
 }

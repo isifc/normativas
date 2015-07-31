@@ -15,8 +15,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="{{path("admin_disposicion")}}">Disposiciones</a></li>
+        <li><a href="{{path("admin_gestion")}}">Gestiones</a></li>
         <li><a href="{{path("admin_tema")}}">Temas</a></li>
-         <li><a href="{{path("admin_gestion")}}">Gestiones</a></li>
         <li><a href="{{path("admin_oficina")}}">Oficinas</a></li>
         <li><a href="{{path("admin_jurisdiccion")}}">Jurisdicciones</a></li>
       </ul>
@@ -27,7 +27,9 @@
                 <span class="glyphicon glyphicon-user"></span> {{ app.user.username }}<span class="caret"></span>
               </a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{{path("fos_user_security_logout")}}" class="mdi-image-edit">Cambiar Contraseña</a></li>
+                <li><a href="{{path("fos_user_security_logout")}}" class="mdi-image-edit"> Registrar Usuarios</a></li>
+                <li><a href="{{path("fos_user_security_logout")}}" class="mdi-image-edit"> editar cuenta</a></li>
+                 <li><a href="{{path("fos_user_security_logout")}}" class="mdi-image-edit">Cambiar Contraseña</a></li>
                 <li><a href="{{path("fos_user_security_logout")}}" class="mdi-navigation-cancel">Salir</a></li>
               </ul>
             </li>

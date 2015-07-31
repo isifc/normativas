@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * DisposicionType form.
- * @author Nombre Apellido <name@gmail.com>
+ * @author Aguirre Facundo <isifc.facu@gmail.com>
  */
 class DisposicionType extends AbstractType
 {
@@ -19,23 +19,53 @@ class DisposicionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('gestion','entity',array(
-                                    'class' => 'HomeBackendBundle:Gestion',
-                                    'placeholder' => 'Seleccione Gestión',
-                                    'attr' => array('class' => 'form-control')))
-            ->add('tema','entity',array(
-                                    'class' => 'HomeBackendBundle:Tema',
-                                    'placeholder' => 'Seleccione Tema',
-                                    'attr' => array('class' => 'form-control')))
+            ->add(
+                'gestion','entity',
+                array(
+                    'class' => 'HomeBackendBundle:Gestion',
+                    'placeholder' => 'Seleccione Gestión',
+                    'attr' => array('class' => 'form-control'),
+                )
+            )
+            ->add(
+                'tema','entity',
+                array(
+                    'label' => 'Tematica',
+                    'class' => 'HomeBackendBundle:Tema',
+                    'placeholder' => 'Seleccione Tema',
+                    'attr' => array('class' => 'form-control'),
+                )
+            )
             ->add('oficina')
-            ->add('numero')
+            ->add(
+                'numero', null,
+                array('label' => 'Número')
+            )
                 
-            ->add('fecha','date',array('widget' => 'single_text',
-                        'html5'   => false))
-            ->add('descripcion','textarea')
-            ->add('estado','checkbox',array(
-                                    'attr' => array('type' => 'checkbox',
-                                                    'required'=> 'false')))
+            ->add(
+                'fecha','date',
+                array(
+                    'label'  => 'Fecha',
+                    'widget' => 'single_text',
+                    'html5'  => false,
+                )
+            )
+            ->add(
+                'descripcion','textarea',
+                array('label' => 'Descripcion',
+                      'attr' => array('style' => 'width:250%;height:4em'),
+                      )
+            )
+            ->add(
+                'estado','checkbox',
+                array(
+                    'label' => '¿Desea hacer pública esta disposición?',
+                    'attr' => array(
+                        'type' => 'checkbox',
+                        'required'=> 'false',
+                    ),
+                )
+            )
             ->add('file',new FileType(), array(
                                     'attr' => array('class' => 'well')))
         ;

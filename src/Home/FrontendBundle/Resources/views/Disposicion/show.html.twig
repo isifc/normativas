@@ -1,4 +1,4 @@
-{% extends 'MWSimpleCrudGeneratorBundle::layout.html.twig' %}
+{% extends 'MWSimpleCrudGeneratorBundle::frontend.html.twig' %}
 
 {% block title %}
 {{ parent() }} - {{ 'views.show.show'|trans({'%entity%': 'Disposicion'}, 'MWSimpleCrudGeneratorBundle') }}
@@ -8,14 +8,14 @@
     
  <div class="panel panel-default">
     <div class="panel-body">
-        <h3>Disposicion</h3>
+        <h3>Disposición</h3>
            
                 <div class="row">
                     <div class="col-md-3">
                         <label class="control-label">Oficina</label>
                     </div>
                     <div class="col-md-5">
-                        {{entity.oficina}}
+                        <b>{{entity.oficina}}</b>
                     </div>
                 </div>
                 <div class="row">
@@ -43,18 +43,8 @@
                        
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <label class="control-label">Estado</label>
-                    </div>
-                    <div class="col-md-5">
-                    {% if entity.estado == 1%}
-                        <p style="color: green"> Público </p>
-                    {% else %}
-                    <p style="color: red"> Privado </p>
-                    {% endif %}
-                </div>
-                </div> 
+               
+                
                  <div class="row">
                     <div class="col-md-3">
                         <label class="control-label">Desripción</label>
@@ -63,24 +53,17 @@
                         {{entity.descripcion}}
                     </div>
                 </div>
-
-               
-        
+ 
     </div>
 
     </div>
 
 <div class="col-lg-9">
     <div class="float-left col-lg-3">
-        <a class="btn btn-info col-lg-11" href="{{ path('admin_disposicion') }}">
+        <a class="btn btn-info col-lg-11" href="{{ path('disposicion') }}">
             {{ 'views.recordactions.backtothelist'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
         </a>
     </div>
-    <div class="float-left col-lg-3">
-        <a class="btn btn-primary col-lg-11" href="{{ path('admin_disposicion_edit', { 'id': entity.id }) }}">
-            {{ 'views.recordactions.edit'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
-        </a>
-    </div>
-    <div class="float-left col-lg-3">{{ form(delete_form) }}</div>
+
 </div>
 {% endblock %}

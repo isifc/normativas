@@ -37,7 +37,7 @@ class Gestion
 
     /**
      * @ORM\OneToMany(targetEntity="Disposicion", mappedBy="gestion")
-     */
+    */
     private $disposiciones;
     
 

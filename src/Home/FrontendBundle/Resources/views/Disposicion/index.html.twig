@@ -55,26 +55,31 @@
                     <th class="sorted"> Oficina </th>
                     <th {% if entities.isSorted('a.Fecha') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Fecha', 'a.fecha') }}</th>
                     <th class="sorted"> Tema </th>
-                    <th{% if entities.isSorted('a.Descripcion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Descripcion', 'a.descripcion') }}</th>
+                    {# <th{% if entities.isSorted('a.Descripcion') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(entities, 'Descripcion', 'a.descripcion') }}</th> #}
                     <th> Archivos </th>
                 </tr>
             </thead>
             <tbody>
             {% for entity in entities %}
                 <tr>
-                    
+         
                     <td>{{ entity.gestion }}</td>
                     <td>{{ entity.numero }}</td>
                     <td>{{ entity.oficina }}</td>
                     <td>{% if entity.fecha %}{{ entity.fecha|date('d-m-Y') }}{% endif %}</td>
                     <td>{{ entity.tema }}</td>
-                    <td>{{ entity.descripcion }}</td>
+                    {# <td>{{ entity.descripcion }}</td> #}
                     <td>
-                      {%  if entity.file is not null  %}
-                            <a target="_blank" href="{{ asset(entity.file) }}">ver pdf</a>
-                      {% endif %}
+                     <div class="col-md-2">
+                            <a class="glyphicon glyphicon-search tooltips"  href="{{ path('disposicion_show', { 'id': entity.id }) }}" title="" rel="tooltip" data-original-title="{{ 'views.actions.show'|trans({}, 'MWSimpleCrudGeneratorBundle') }}"></a>
+                        </div>
+                    {%  if entity.file is not null  %}
+                                <a target="_blank" title="ver pdf" href="{{ asset(entity.file) }}"><img src="{{ asset('bundles/homefrontend/images/pdf_ico.png') }}" class="img-responsive centrado" /></a>
+                    {% endif %}
+                      
                       
                     </td>
+                
                 </tr>
             {% endfor %}
             </tbody>
@@ -109,10 +114,16 @@ $('.tooltips').tooltip();
 });
 </script>
 <script type="text/javascript">
-    $('#home_backendbundle_disposicionfiltertype_fecha_left_date').bootstrapMaterialDatePicker();
+    $('#home_backendbundle_disposicionfiltertype_fecha_left_date').bootstrapMaterialDatePicker({
+        lang: "es",
+        weekStart : 0, 
+        time: false });
 </script>
 <script type="text/javascript">
-    $('#home_backendbundle_disposicionfiltertype_fecha_right_date').bootstrapMaterialDatePicker();
+    $('#home_backendbundle_disposicionfiltertype_fecha_right_date').bootstrapMaterialDatePicker({
+        lang: "es",
+        weekStart : 0, 
+        time: false});
 </script>
 
 

@@ -5,127 +5,40 @@
 {% endblock %}
 
 {% block page %}
-    {% form_theme edit_form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}
+{% form_theme edit_form 'MWSimpleCrudGeneratorBundle:widget:fields.html.twig' %}
 
-    <div class="panel panel-default center-block">
-        <div class="panel-heading">
-            <h3 class="panel-title center-block">
-                {{ 'views.edit.edit'|trans({'%entity%': 'Disposicion'}, 'MWSimpleCrudGeneratorBundle') }}
-            </h3>
-        </div>
-            
-        <div class="panel-body">
-            {{ form_start(edit_form) }}
-            <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.gestion,'Gestion')}}
-                 </div>
-                 <div class="col-md-4">
-                     {{form_widget(edit_form.gestion)}}
-                 </div>
-                 <div class="col-md-5"></div>
-            </div>
-            <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.tema,'Tematica')}}
-                 </div>
-                 <div class="col-md-4">
-                     {{form_widget(edit_form.tema)}}
-                 </div>
-                 <div class="col-md-5"></div>
-            </div>
-            <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.oficina,'Oficina')}}
-                 </div>
-                 <div class="col-md-4">
-                     {{form_widget(edit_form.oficina)}}
-                 </div>
-                 <div class="col-md-5"></div>
-            </div>
-            <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.fecha,'Fecha')}}
-                 </div>
-                 <div class="col-md-4">
-                     {{form_widget(edit_form.fecha)}}
-                 </div>
-                 <div class="col-md-5"></div>
-            </div>
-             <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.numero,'Número')}}
-                 </div>
-                 <div class="col-md-4">
-                     {{form_widget(edit_form.numero)}}
-                 </div>
-                 <div class="col-md-5"></div>
-            </div>
-            <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.descripcion,'Descripcion')}}
-                 </div>
-                 <div class="col-md-9">
-                     {{form_widget(edit_form.descripcion)}}
-                 </div>  
-            </div>
-             <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.estado,'¿Desea hacer pública esta disposición?')}}
-                 </div>
-                 <div class="col-md-9">
-                     {{form_widget(edit_form.estado)}}
-                 </div>
-            </div>
-            <div class="row">
-                 <div class="col-md-3">
-                     {{form_label(edit_form.file,'PDF')}}
-                 </div>     
-            </div>
-             <div class="row">
-                 <div class="col-md-3">
-                     {{ form_label(edit_form.file.name,'nombre') }}
-                 </div>
-                 <div class="col-md-9">
-                     {{ form_widget(edit_form.file.name) }}                  
-                 </div>
-                 <div class="col-md-5">
-                    {{ form_errors(edit_form.file.name) }}
-                 </div>
-            </div>
-            <div class="row">
-                 <div class="col-md-3">
-                     {{ form_label(edit_form.file.file,'archivo') }}
-                 </div>
-                 <div class="col-md-9">
-                     {{ form_widget(edit_form.file.file) }}                  
-                 </div>
-                 <div class="col-md-5">
-                    {{ form_errors(edit_form.file.file) }}
-                 </div>
-            </div>
-            {{ form_rest(edit_form) }}
-        </div>
-        </div>
+<div class="panel panel-default center-block">
+    <div class="panel-heading">
+        <h3 class="panel-title center-block">
+            {{ 'views.edit.edit'|trans({'%entity%': 'Disposicion'}, 'MWSimpleCrudGeneratorBundle') }}
+        </h3>
     </div>
-        <div class="col-lg-9">
+        
+    <div class="panel-body">
+        {% include 'HomeBackendBundle:Disposicion:form.html.twig' with { 'form' : edit_form } %}
+    </div>
+</div>
+<div class="col-lg-9">
     <div class="float-left col-lg-3">
         <a class="btn btn-info col-lg-11" href="{{ path('admin_disposicion') }}">
             {{ 'views.recordactions.backtothelist'|trans({}, 'MWSimpleCrudGeneratorBundle') }}
         </a>
     </div>
-  
 </div>
 {% endblock %}
 
 {% block javascript %}
-    {{ parent() }}
-    <script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
-
+{{ parent() }}
+<script src="{{ asset('bundles/mwsimplecrudgenerator/js/widget.js') }}"></script>
 <script type="text/javascript">
-    $('#home_backendbundle_disposicion_fecha').bootstrapMaterialDatePicker(
-        { lang: 'es',
+    $('#home_backendbundle_disposicion_fecha').bootstrapMaterialDatePicker({
+        lang: 'es',
         weekStart : 0, 
-        time: false });
+        time: false
+    });
+    $('#home_backendbundle_disposicion_oficina').select2({
+        minimumInputLength: 3,
+        placeholder: "seleccione una oficina",
+    });
 </script>
 {% endblock %}

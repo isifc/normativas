@@ -24,7 +24,7 @@ class DisposicionController extends Controller
      * Lists all Disposicion entities.
      *
      * @Route("/", name="admin_disposicion")
-     * @Method("GET")
+     * @Method({"GET","POST"})
      * @Template()
      */
     public function indexAction()
@@ -60,9 +60,9 @@ class DisposicionController extends Controller
             ->orderBy('a.id', 'DESC')
         ;
         // Bind values from the request
-        $filterForm->handleRequest($request);
+        //$filterForm->handleRequest($request);
         // Reset filter
-        if ($filterForm->get('reset')->isClicked()) {
+        /*if ($filterForm->get('reset')->isClicked()) {
             $session->remove('DisposicionControllerFilter');
             $filterForm = $this->createFilterForm();
         }
@@ -83,6 +83,35 @@ class DisposicionController extends Controller
                 $filterForm = $this->createFilterForm($filterData);
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
             }
+        }*/
+        $filterForm->handleRequest($request);
+        if ($filterForm->get('reset')->isClicked()) {
+             $session->remove('DisposicionControllerFilter');
+             $filterForm = $this->createFilterForm();
+             //die(var_dump($session->get('DisposicionControllerFilter')));
+        }
+
+        // Filter action
+        if ($filterForm->get('filter')->isClicked()) {
+            // Bind values from the request
+            
+            //die(var_dump($filterForm->isValid()));
+            if ($filterForm->isValid()) {
+                // Build the query from the given form object
+                $this->get('lexik_form_filter.query_builder_updater')
+                    ->addFilterConditions($filterForm, $queryBuilder);
+                // Save filter to session
+                $filterData = $request->get($filterForm->getName());
+                //die(var_dump($filterData));
+                $session->set('DisposicionControllerFilter', $filterData);
+            }
+        } else {
+            // Get filter from session
+            if ($session->has('DisposicionControllerFilter')) {
+                $filterData = $session->get('DisposicionControllerFilter');
+                $filterForm->submit($filterData);
+                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($filterForm, $queryBuilder);
+            }
         }
 
         return array($filterForm, $queryBuilder);
@@ -96,7 +125,7 @@ class DisposicionController extends Controller
     {
         $form = $this->createForm(new DisposicionFilterType(), $filterData, array(
             'action' => $this->generateUrl('admin_disposicion'),
-            'method' => 'GET',
+            'method' => 'POST',
         ));
 
         $form
@@ -117,7 +146,7 @@ class DisposicionController extends Controller
     /**
      * Creates a new Disposicion entity.
      *
-     * @Route("/", name="admin_disposicion_create")
+     * @Route("/create", name="admin_disposicion_create")
      * @Method("POST")
      * @Template("HomeBackendBundle:Disposicion:new.html.twig")
      */

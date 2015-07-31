@@ -43,7 +43,7 @@ class Disposicion
     
     /**
     * @ORM\OneToOne(targetEntity="File", mappedBy="disposicion", cascade={"persist", "remove"})
-    * @Assert\NotNull( message= "No puede estar vacio")
+    * @Assert\Valid
     */
     private $file; 
 

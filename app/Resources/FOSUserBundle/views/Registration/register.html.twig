@@ -1,0 +1,22 @@
+{% extends 'FOSUserBundle::header.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+<h1>hola</h1>
+{% block fos_user_content %} 
+{{ parent() }}
+<body class="header2">
+
+    <div class="row-fluid">
+        <div class="span6 offset3">
+            <div class="bs-docs-section">
+                <div class="page-header">
+                    <div class="media">
+                     	
+                     	{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+         
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
+{% endblock fos_user_content %}
